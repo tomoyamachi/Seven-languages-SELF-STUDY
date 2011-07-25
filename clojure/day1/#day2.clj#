@@ -1,0 +1,12 @@
+(defn size [v]
+  (if (empty? v)
+    0
+    (inc (size (rest v)))))
+;(size [1 2 3])
+
+(defn unless [x then]
+  (if (not x) then))
+(defn exhibits-oddity? [x]
+  (unless (even? x)
+    #(println "Rather odd!")))
+(exhibits-oddity? 4)
