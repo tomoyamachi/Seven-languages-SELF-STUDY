@@ -1,0 +1,29 @@
+なぜかめちゃくちゃカンタンな問題だった。では解答。
+
+問題1
+Consider a list of keyword-value tuples, such as [{erlang, "a functional language"}, {ruby, "an OO language"}]. Write a function that accepts the list and a keyword and returns the associated value for the keyword.
+[erlang]display_value(L,Key) -> ThisTuple = lists:keyfind(Key,1,L),
+                        case ThisTuple of
+                            {Key,Value} -> Value;
+                            _ -> false
+                        end.[/erlang]
+<div class="terminal>> P = [{erlang, "a functional language"}, {ruby, "an OO language"}, {scala, "based on Java language"}].
+[{erlang,"a functional language"},
+ {ruby,"an OO language"},
+ {scala,"based on Java language"}]
+> day2:display_value(P,ruby).
+"an OO language"
+</div>
+
+問題2
+Consider a shopping list that looks like [{item quantity price}, ...].
+Write a list comprehension that builds a list of items of the form [{item total_price}, ...], where total_price is quantity times price.
+[erlang]get_total_price(L) -> [{Item, (Num * Price)} || {Item, Num, Price} <- L ].[/erlang]
+<div class="terminal>> Goods = [{shirt, 3, 3500}, {shoes, 2, 7000}].
+[{shirt,3,3500},{shoes,2,7000}]
+> day2:get_total_price(Goods).
+[{shirt,10500},{shoes,14000}]
+</div>
+
+参考
+<a href="http://www.erlang.org/doc/man/lists.html">Erlang -- lists</a>
